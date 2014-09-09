@@ -1,0 +1,33 @@
+
+.page-header
+  %h1 Two Truths and a Lie
+
+%p= @round.name
+%p{:style => (@round.lie == 1) ? 'font-weight: bold' : ''}
+  = '(' + pluralize(@totals[1], 'vote') + ')'
+  = @round.statement1.html_safe
+%p{:style => (@round.lie == 2) ? 'font-weight: bold' : ''}
+  = '(' + pluralize(@totals[2], 'vote') + ')'
+  = @round.statement2.html_safe
+%p{:style => (@round.lie == 3) ? 'font-weight: bold' : ''}
+  = '(' + pluralize(@totals[3], 'vote') + ')'
+  = @round.statement3.html_safe
+
+
+- if @round.lie.nil?
+  %p
+    = link_to('Finalize this Game', finalize_round_path(@round))
+
+
+%h2 Votes
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th User
+      %th Vote
+  %tbody
+    - @votes.each do |vote|
+      %tr
+        %td= vote.user.email
+        %td= 'Statement ' + vote.statement.to_s

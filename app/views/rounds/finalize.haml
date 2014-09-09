@@ -1,0 +1,17 @@
+%h2= 'Finalize Two Truths and Lie Game for ' + @round.name
+
+%p Which statement was the lie?
+
+= form_for [@round], url: {action: 'update'} do |f|
+    = f.radio_button :lie, '1'
+    = f.label :lie, @round.statement1, :value => '1'
+    %br
+    = f.radio_button :lie, '2'
+    = f.label :lie, @round.statement2, :value => '2'
+    %br
+    = f.radio_button :lie, '3'
+    = f.label :lie, @round.statement3, :value => '3'
+    %br
+    = f.submit 'Submit'
+
+%p NOTE: Once the lie has been submitted, no further votes will be accepted.

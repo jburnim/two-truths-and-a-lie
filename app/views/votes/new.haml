@@ -1,0 +1,13 @@
+%p= @round.name.html_safe
+
+= form_for [@round, @vote], url: {action: 'create'} do |f|
+    = f.radio_button :statement, '1'
+    = f.label :statement, @round.statement1.html_safe, :value => '1'
+    %br
+    = f.radio_button :statement, '2'
+    = f.label :statement, @round.statement2.html_safe, :value => '2'
+    %br
+    = f.radio_button :statement, '3'
+    = f.label :statement, @round.statement3.html_safe, :value => '3'
+    %br
+    = f.submit 'Vote'

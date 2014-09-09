@@ -1,0 +1,20 @@
+%h2 Creating a new round.
+
+= form_for @round, url: {action: 'create'} do |f|
+  = f.label(:name, 'Name:')
+  = f.text_field :name
+  %br
+  %br
+  = f.label :statement1, 'First statement:'
+  %br
+  = f.text_area :statement1, size: '70x4'
+  %br
+  = f.label :statement2, 'Second statement:'
+  %br
+  = f.text_area :statement2, size: '70x4'
+  %br
+  = f.label :statement3, 'Third statement:'
+  %br
+  = f.text_area :statement3, size: '70x4'
+  %br
+  = f.submit 'Create'

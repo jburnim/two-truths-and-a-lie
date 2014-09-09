@@ -1,0 +1,41 @@
+.page-header
+  %h1 Open Games
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Date
+      %th
+      %th
+  %tbody
+    - @open_rounds.each do |round|
+      %tr
+        %td= round[:name]
+        %td= round[:created_at]
+        %td
+          - if round[:voted]
+            = link_to('view', round_path(round[:id]))
+          - else
+            = link_to('finalize', finalize_round_path(round[:id]))
+        %td= if !round[:voted] then link_to('vote', round_path(round[:id])) end
+
+%p
+  = link_to('New Game', new_round_path)
+
+
+.page-header
+  %h1 Completed Games
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Date
+      %th
+  %tbody
+    - @finished_rounds.each do |round|
+      %tr
+        %td= round[:name]
+        %td= round[:created_at]
+        %td= link_to('view', round_path(round[:id]))
